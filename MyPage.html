@@ -1,19 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>🌼Ahn Hyobin</title>
+    <meta name="viewport" content="user-scalable=no,initial-scale=1">
     <style>
         body {background-color: #c9e374; font-family: '교보 손글씨 2019';}
-        #main-navigation {overflow: hidden; text-align:center; height:80px; padding: 10px;}
+        #main-navigation {justify-content: center; overflow: hidden; text-align:center; height:80px; padding: 10px;}
         #main-navigation a {text-decoration: none; color:white;}
-        #main-navigation a:hover {color:black;}
-        #main-navigation > ul {overflow: hidden; text-align: center; width:500px; margin:0 auto; background-color: rgba(255,255,255,0.4);}
-        #main-navigation > ul > li {display:inline-block; list-style: none; padding: 0 10px; line-height: 50px; font-size: 15px; float: none;}
-        #main-navigation > ul > li:hover {color:black; background-color:white;}
+        #main-navigation > ul {overflow: hidden; text-align: center; width:100%; margin:0 auto; background-color: rgba(255,255,255,0.4);}
+        #main-navigation > ul > li {justify-content: center; display:inline-block; list-style: none; padding: 0 10px; line-height: 50px; font-size: 15px; float: none;}
+        #main-navigation > ul > li:hover a{color:black; background-color:white;}
         .middle {overflow: hidden;}
         .middle {overflow: hidden; text-align: center;}
         .middle img {width: 300px;}
         p {white-space: normal;}
+        .hidden-section {display: none;}
+        .study {float:left; width:100px; height:100px; border-radius: 50px; background-color: white; text-align:center;}
+        .first, .second, .thrid {display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
+        .first .study, .second .study, .thrid .study { display: flex; justify-content: center; align-items: center; margin: 10px; width: 100px; height: 100px; border-radius: 50%; background-color: white; text-align: center;}         
+        #Hobby h3 {text-align:center; margin:0 auto;}
+        .container {width: 600px; margin: 0 auto;}
+        .item img {width: auto; height:auto; max-width:100%; max-height:100%;}
+        #left-button, #right-button {border:none; border-radius:3px; color:black; background:white;}
+        .item {display:block; margin:0 auto;}
+        @media screen and (max-width: 767px) {
+            body {width: auto}
+            #main-navigation {width: 100%; float:none; position: fixed; bottom:0; text-align:center; left:0;}
+            #main-navigation > ul {width: 100%; justify-content: center; align-items: center; margin:0;}
+            #main-navigation > ul > li {width: auto; display:inline-block;}
+            #main-navigation > ul > li > a {width:100%; height:100%;}
+            .container {
+                width: 100%;
+                margin: 0;
+              }
+              .item img {
+                width: 100%;
+                height: auto;
+                max-width: none;
+                max-height: none;
+              }
+          }
     </style>
+    <script>
+        window.onload = function() {
+            var navLinks = document.querySelectorAll('#main-navigation a');
+            var sections = document.querySelectorAll('section > div');
+            for (var i = 0; i < navLinks.length; i++) {
+                navLinks[i].addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var sectionId = this.getAttribute('href').substring(1);
+                    showSection(sectionId);
+                });
+            }
+            showSection('Home');
+            function showSection(sectionId) {
+                for (var i = 0; i < sections.length; i++) {
+                  sections[i].style.display = 'none';
+                }
+                document.getElementById(sectionId).style.display = 'block';
+              }
+        };
+    </script>
+    <script src='https://code.jquery.com/jquery-3.1.0.js'></script>
+    <script>
+     $(document).ready(function () {
+      var width = $('[data-role="slider"]').attr('data-width');
+      var height = $('[data-role="slider"]').attr('data-height');
+      var count = $('[data-role="slider"] div.item').length;
+      $('[data-role="slider"]').css({
+        position: 'relative', overflow: 'hidden', width: width, height: height})
+       .find('.container').css({ 
+        position: 'absolute', width: count * width, overflow: 'hidden'})
+      .find('.item').css({
+       width: width, height: height, float: 'left'});
+    
+      var currentPage = 0;
+      var changePage = function () {
+       $('[data-role="slider"] > .container').animate({left: -currentPage * width}
+       , 500);
+      };
+    
+      $('#left-button').click(function () {
+       if (currentPage > 0) {currentPage--; changePage();}
+      });
+      $('#right-button').click(function () {
+       if (currentPage < count - 1) {currentPage++; changePage();}
+       });
+      });
+    </script>
 </head>
 <body>
     <!--헤더-->
@@ -22,10 +96,9 @@
     <!--내비게이션 메뉴-->
     <nav id="main-navigation">
         <ul>
-            <li><a href="Home">Home</a></li>
-            <li><a href="#Study">Study</a></li>
-            <li><a href="#Bookcase">Bookcase</a></li>
-            <li><a href="#Hobby">Hobby</a></li>
+            <li><a href="#Home"><b>Home</b></a></li>
+            <li><a href="#Study"><b>Study</b></a></li>
+            <li><a href="#Hobby"><b>Hobby</b></a></li>
         </ul>
     </nav>
     <!--본문 영역-->
@@ -40,21 +113,84 @@
                 <a href="gyqlsdks@kangwon.ac.kr">gyqlsdks@kangwon.ac.kr</a>
              </div>
              <br>
-             <p>안녕하세요! 저는 평생 문과였다가 스물한살에 컴공으로 전과한 안효빈입니다!!</p>
-             <p>아직 구체적인 분야는 정하지 못했지만, 열심히 공부해서 전문가가 되도록 해보겠습니다.</p>
-             <p>여러분 모두 행복하세요!</p>
+             <p>안녕하세요! 저는 강원대학교 컴퓨터공학과에 재학중인 안효빈입니다!!</p>
+             <p>사실 중고등학교 다 문과였고, 대학교도 자유전공학부 인문계열로 입학했습니다.</p>
+             <p>학교에 입학할때부터 IT쪽에 관심이 있었는데, 1년동안 여러 프로그래밍수업을 들으면서 흥미가 생겨 1학년이 끝나고 컴퓨터공학과로 진학하게 되었습니다.</p>
+             <P>다른 사람들에 비해 컴퓨터 관련 지식도 부족하고, 공부방식이나 내용이 너무 생소해 중간고사를 본 후 몇주간 좌절감에 빠져있었습니다.</P>
+             <p>그러다 최근에 다시 정신차리고 열심히 공부하려 노력하고 있습니다.</p>
+             <p>앞으로 열심히 공부해서 대체불가한 사람으로 성장하겠습니다!</p>
             </div>
         </div>
         <div id="Study">
-            <h1>안녕할까요? 난 못해요!!</h1>
-        </div>
-        <div id="Bookcase">
-            <h1>으아아아악</h1>
+            <div id="Study">
+                <div class="middle">
+                    <h3>1학년 1학기</h3>
+                    <div class="first"> 
+                     <div class="study">창의적글쓰기와 발표</div>
+                     <div class="study">기본영어 읽기쓰기</div>
+                     <div class="study">자바프로그래밍1</div>
+                     <div class="study">헌법기초</div>
+                     <div class="study">파이썬이해와 활용</div>
+                     <div class="study">행복과 인문학</div>
+                     <div class="study">진로탐색과 꿈설계</div>
+                    </div>
+                    <h3>1학년 2학기</h3>
+                    <div class="second"> 
+                     <div class="study">기본영어 듣기말하기</div>
+                     <div class="study">생활법률</div>
+                     <div class="study">법학의 이해</div>
+                     <div class="study">컴퓨터프로그래밍기초</div>
+                     <div class="study">건강증진을위한 구강관리학</div>
+                     <div class="study">컴퓨팅사고력</div>
+                     <div class="study">지속가능한발전의 이해</div>
+                    </div>
+                    <h3>2학년 1학기</h3>
+                    <div class="thrid"> 
+                     <div class="study">리눅스프로그래밍</div>
+                     <div class="study">자료구조</div>
+                     <div class="study">고급파이썬프로그래밍</div>
+                     <div class="study">4차산업혁명과 진로설계</div>
+                     <div class="study">웹프로그래밍</div>
+                     <div class="study">이산수학</div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="Hobby">
-            <h1>헤헤헤ㅔ헤헤헤헿레렐</h1>
+            <h3>그동안 직접 찍은 사진들</h3>
+            <br>
+            <div data-role="slider" data-width="500" data-height="500">
+                <div class="container">
+                 <div class="item">
+                  <img src="C:\Users\gyqls\OneDrive\바탕 화면\KakaoTalk_20230603_053739979.jpg">
+                 </div>
+                 <div class="item">
+                    <img src="C:\Users\gyqls\OneDrive\바탕 화면\KakaoTalk_20230603_053930551.jpg">
+                 </div>
+                <div class="item">
+                    <img src="C:\Users\gyqls\OneDrive\바탕 화면\KakaoTalk_20230603_053937087.jpg">
+                </div>
+                <div class="item">
+                    <img src="C:\Users\gyqls\OneDrive\바탕 화면\KakaoTalk_20230603_053939131.jpg">
+                </div>
+                <div class="item">
+                    <img src="C:\Users\gyqls\OneDrive\바탕 화면\KakaoTalk_20230603_053944664.jpg">
+                </div>
+                <div class="item">
+                    <img src="C:\Users\gyqls\OneDrive\바탕 화면\KakaoTalk_20230603_053947228.jpg">
+                </div>
+                <div class="item">
+                    <img src="C:\Users\gyqls\OneDrive\바탕 화면\KakaoTalk_20230603_053954289.jpg">
+                </div>
+                <div class="item">
+                    <img src="C:\Users\gyqls\OneDrive\바탕 화면\KakaoTalk_20230603_053957049.jpg">
+                </div>
+               </div>
+              </div>
+              <button id="left-button">이전</button>
+              <button id="right-button">다음</button>
         </div>
     </section>
- 
+    <div id="footer"></div>
 </body>    
 </html>
